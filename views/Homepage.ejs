@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-500 to-purple-600 flex justify-center items-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">URL Shortener</h1>
+
+       
+        <form action="/URL-SHORTNER" method="post" class="space-y-4">
+            <input 
+                type="text" 
+                placeholder="Enter the URL..." 
+                name="longUrl" 
+                required 
+                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+            >
+
+            <button 
+                type="submit" 
+                class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition duration-200 shadow-md">
+                Shorten URL
+            </button>
+        </form>
+
+
+        <% if (error) { %>
+            <p class="mt-4 text-red-500 font-medium"><%= error %></p>
+        <% } %>
+    </div>
+
+</body>
+</html>
