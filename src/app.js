@@ -2,7 +2,9 @@ const express = require('express')
 const app = express()
 app.set('view engine','ejs')
 const path = require('path');
+const bodyParser = require('body-parser')
 app.use(express.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json())
 const connection = require('./config/db.config')
 connection()

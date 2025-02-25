@@ -6,33 +6,31 @@
     <title>URL Shortener</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
-<body class="bg-gradient-to-r from-blue-500 to-purple-600 flex justify-center items-center min-h-screen">
+<body class="bg-gradient-to-br from-blue-600 to-purple-700 flex justify-center items-center min-h-screen p-4">
 
-    <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
-        <h1 class="text-2xl font-bold text-gray-800 mb-4">URL Shortener</h1>
+    <div class="bg-white dark:bg-gray-900 p-8 rounded-3xl shadow-2xl w-full max-w-md text-center transition-all duration-300">
+        <h1 class="text-3xl font-extrabold text-gray-800 dark:text-white mb-4">🔗 URL Shortener</h1>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">Easily shorten and manage your links!</p>
 
-       
         <form action="/URL-SHORTNER" method="post" class="space-y-4">
             <input 
-                type="text" 
-                placeholder="Enter the URL..." 
+                type="url" 
+                placeholder="Enter your URL..." 
                 name="longUrl" 
                 required 
-                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+                class="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white shadow-sm transition"
+            >
+
+            <input 
+                type="number" 
+                name="expirationTime" 
+                placeholder="Expiration (minutes)" 
+                class="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white shadow-sm transition"
             >
 
             <button 
                 type="submit" 
-                class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition duration-200 shadow-md">
-                Shorten URL
+                class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                ✂️ Shorten URL
             </button>
-        </form>
-
-
-        <% if (error) { %>
-            <p class="mt-4 text-red-500 font-medium"><%= error %></p>
-        <% } %>
-    </div>
-
-</body>
-</html>
+       
