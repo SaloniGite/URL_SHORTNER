@@ -15,6 +15,10 @@ const URL_Schema = new mongoose.Schema({
     },
     expiresAt:{
         type:Date
+    },
+    createdAt:{
+        type:Date,
+        default:Date.now 
     }
 })
 

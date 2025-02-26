@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black min-h-screen text-white flex flex-col items-center justify-center">
+    <h2 class="text-4xl font-semibold mt-6 text-yellow-400">📊 URL Shortener Analytics</h2>
+
+    <div class="w-full max-w-5xl p-6 mt-8 bg-gradient-to-r from-purple-600 to-yellow-600 rounded-xl shadow-lg">
+   
+        <div class="chart-container mb-6 w-full">
+            <canvas id="clickChart"></canvas>
+        </div>
+
+        <div class="overflow-x-auto bg-purple-700 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-semibold text-center py-4">🔗 Shortened URLs Data</h3>
+            <table class="min-w-full text-sm text-left text-gray-400">
+                <thead class="bg-purple-600">
+                    <tr>
+                        <th class="p-4">Short URL</th>
+                        <th class="p-4">Clicks</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-600">
+                    <% urls.forEach(url => { %>
+                        <tr class="hover:bg-purple-600 hover:text-yellow-300 transition duration-200">
+                            <td class="p-4">
+                                <a href="/shorten/<%= url.shortUrl %>" target="_blank" class="text-yellow-300 hover:text-yellow-500 transition duration-200">
+                                    <%= url.shortUrl %>
+                                </a>
+                            </td>
+                            <td class="p-4 text-center"><%= url.clicks %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="labels" style="display: none;"><%= JSON.stringify(labels) %></div>
+    <div id="clicks" style="display: none;"><%= JSON.stringify(clicks) %></div>
+
+
+    <script>
+        const labels = JSON.parse(document.getElementById('labels').textContent);
+        const clicks = JSON.parse(document.getElementById('clicks').textContent);
+
+        const ctx = document.getElementById('clickChart').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Number of Clicks',
+                    data: clicks,
+                    backgroundColor: 'rgba(255, 215, 0, 0.6)',  
+                    borderColor: 'rgba(255, 215, 0, 1)',      
+                    borderWidth: 1.5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(255, 255, 255, 0.3)' },
+                        ticks: {
+                            color: 'white'  
+                        }
+                    },
+                    x: { 
+                        grid: { color: 'rgba(255, 255, 255, 0.3)' } 
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: "white" } }
+                },
+                layout: {
+                    padding: {
+                        top: 20,
+                        right: 20,
+                        bottom: 20,
+                        left: 20
+                    }
+                }
+            }
+        });
+    </script>
+
+    <style>
+       
+        .chart-container {
+            height: 300px;  
+        }
+    </style>
+</body>
+</html>

@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shortened URL</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-gradient-to-r from-indigo-500 to-blue-600 flex justify-center items-center min-h-screen p-4">
 
     <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
         <h1 class="text-2xl font-bold text-gray-800 mb-4">Your Shortened URL</h1>
 
-        <!-- Shortened URL Display -->
+
         <div class="bg-gray-100 p-3 rounded-lg flex justify-between items-center">
             <a href="/shorten/<%= shortUrl %>" class="text-blue-600 font-medium hover:text-blue-800 transition duration-200 break-all">
                 <%= shortUrl %>
@@ -21,22 +21,24 @@
             </button>
         </div>
 
-        <!-- QR Code Display -->
         <div class="mt-4">
             <img src="<%= qrCode %>" alt="QR Code" class="mx-auto w-40 h-40 rounded-lg shadow-md">
         </div>
 
-        <!-- Delete URL Button -->
         <form action="/delete/<%= shortUrl %>" method="post" class="mt-4">
             <button type="submit" class="bg-red-500 text-white px-5 py-2 rounded-md hover:bg-red-700 transition font-semibold">
                 Delete URL
             </button>
         </form>
 
-        <!-- Shorten Another Button -->
-        <div class="mt-6">
+        <div class="mt-6 flex justify-center gap-4">
+   
             <a href="/" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 shadow-md">
                 Shorten Another
+            </a>
+           
+            <a href="/Analytics" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 shadow-md">
+                Analytics
             </a>
         </div>
     </div>
@@ -50,3 +52,4 @@
 
 </body>
 </html>
+

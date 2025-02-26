@@ -66,3 +66,34 @@ exports.Delete_URL = async(req,res)=>{
         res.status(500).send('internal sever error ')
     }
 }
+
+// exports.getAnalyticsDashboard = async(req,res)=>{
+//     try{
+//         const urls = await URL_Model.find().sort({createdAt:-1})
+//         const labels = urls.map(url=>url.shortUrl)
+//         const clicks = urls.map(url=>url.clicks)
+//         res.render('Analytics_Dashboard',{urls , labels , clicks})
+//     }catch(error){
+//         console.log(error)
+//         res.status(500).json({ success: false, error: "Internal Server Error" });
+//     }
+// }
+
+exports.getAnalyticsDashboard = async (req, res) => {
+    try {
+        const urls = await URL_Model.find().sort({ createdAt: -1 });
+
+        if (!urls || urls.length === 0) {
+            return res.render('Analytics_Dashboard', { urls: [], labels: [], clicks: [] });
+        }
+
+        const labels = urls.map(url => url.shortUrl || "N/A");
+        const clicks = urls.map(url => url.clicks || 0);
+
+        res.render('Analytics_Dashboard', { urls, labels, clicks });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, error: "Internal Server Error" });
+    }
+};
